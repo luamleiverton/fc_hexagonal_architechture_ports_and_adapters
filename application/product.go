@@ -7,6 +7,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
+// especifica que os campos/atributos devem ser required por padrão
 func init() {
 	govalidator.SetFieldsRequiredByDefault(true)
 }
@@ -45,8 +46,7 @@ type ProductPersistenceInterface interface {
 	ProductWriter
 }
 
-//definir constantes
-
+// definir constantes (status dos produtos)
 const (
 	DISABLED = "disabled"
 	ENABLED  = "enabled"
@@ -54,9 +54,9 @@ const (
 
 // struct ja implementa automaticamente a interface sem assinatura por estar no mesmo local
 type Product struct {
-	ID     string  `valid:"uuidv4"`
+	ID     string  `valid:"uuidv4"` //obrigatoriamento o id deve ser um uuid
 	Name   string  `valid:"required"`
-	Price  float64 `valid:"float,optional"`
+	Price  float64 `valid:"float,optional"` //tipo float e opcional
 	Status string  `valid:"required"`
 }
 
